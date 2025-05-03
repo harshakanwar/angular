@@ -1,6 +1,37 @@
-<app-header/>
+<app-header />
 <main>
-  <ul id ="users">
-    <li><app-user/></li>
+  <ul id="users">
+   <!-- @for and @if are new syntax in Angular 17
+     before that we used *ngFor and *ngIf
+    @for is used to iterate over a collection and @if is used to conditionally render a block of code
+
+    <li *ngFor="let user of users">
+      <app-user [user]="user" (select)="onSelectUser($event)" />
+    </li> -->
+
+    @for(user of users; track user.id){
+    <li>
+      <app-user [user]="user" [selected]="user.id === selectedUsedId" (select)="onSelectUser($event)" />
+    </li>
+
+    }
   </ul>
+  @if(selectedUser){
+  <app-tasks [userId]="selectedUser.id" [name]="selectedUser.name"></app-tasks>
+  }@else {
+  <p id="fallback">Select a user to see their tasks !</p>
+  }
+
+  <!-- We can also use ng-template to conditionally render a block of code
+  It is now a legacy syntax and not recommended to use it in new projects
+  We have simpler alternatives @for and @if
+  <app-tasks *ngIf="selectedUser"; else=fallback [name]="selectedUser!.name"></app-tasks>
+  <ng-template #fallback>
+    <p id="fallback">Select a user to see their tasks !</p>
+  </ng-template> -->
+  
+  <!-- <app-tasks></app-tasks>
+  <app-tasks></app-tasks>
+  <app-tasks></app-tasks> -->
+
 </main>
