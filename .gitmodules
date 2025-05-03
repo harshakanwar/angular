@@ -1,0 +1,3 @@
+[submodule "angular-essentials"]
+	path = angular-essentials
+	url = https://github.com/harshakanwar/angular.git
