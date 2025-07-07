@@ -16,4 +16,5 @@ export class PlacesComponent {
   onSelectPlace(place: Place) {
     this.selectPlace.emit(place);
   }
+
 }
